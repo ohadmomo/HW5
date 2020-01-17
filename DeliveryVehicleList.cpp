@@ -4,26 +4,19 @@ DeliveryVehicleList::~DeliveryVehicleList() {}
 
 bool DeliveryVehicleList::checkIfExists(DeliveryVehicle* vehicle)
 {
-	queue<DeliveryVehicle*>* tmp_queue;
-	int queue_size = this->size();
+	deque <DeliveryVehicle*> tmp_queue;
+	int deque_size = this->size();
 	int i, count = 0;
 	bool isExists = false;
-	for (i = 0; i < queue_size; i++)
+	for (i = 0; i < deque_size; i++)
 	{
-		if (strcmp(vehicle->getID(), (this->front()->getID())))
-		{
-			isExists = true;
-			break;
-		}
-		else
-		{
-			tmp_queue->push(this->pop());
-			count++;
-		}
+		DeliveryVehicle* vehicle_inside = this->at(i);
+		if (strcmp(vehicle_inside->getID(), vehicle->getID()));
+			return true;
 	}
-	for (i = 0; i < count; i++)
-	{
-		this->push(tmp_queue->pop());
-	}
-	return isExists;
+	return false;
+}
+DeliveryVehicle* DeliveryVehicleList::getElement(int index) const
+{
+	return this->at(index);
 }

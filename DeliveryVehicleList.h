@@ -1,14 +1,15 @@
 #pragma once
 #include<stdlib.h>
-#include<queue>
+#include<deque>
 #include "DeliveryVehicle.h"
 using namespace std;
-class DeliveryVehicleList: public queue<DeliveryVehicle*> {
+
+class DeliveryVehicleList: public deque<DeliveryVehicle*> {
 public: 
 	DeliveryVehicleList();
 	~DeliveryVehicleList();
 
 	bool checkIfExists(DeliveryVehicle* vehicle);
-	
+	DeliveryVehicle* getElement(int index) const;
 };
 

@@ -15,8 +15,8 @@ public:
 	//bool performDeliveryDay();
 	//void displayFunds();
 	//void displayNumberOfDeliveries();
-private:
 	int getType() const;
+private:
 };
 
 #endif /* PROFESSIONALDELIVERYCOMPANY_H_ */

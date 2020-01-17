@@ -13,8 +13,8 @@ public:
 	//bool performDeliveryDay();
 	//void displayFunds();
 	//void displayNumberOfDeliveries();
-private:
 	int getType() const;
+private:
 };
 
 #endif /* FASTDELIVERYCOMPANY_H_ */

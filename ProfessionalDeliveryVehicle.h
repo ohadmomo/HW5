@@ -12,10 +12,9 @@ public:
 
 	//adds parcel to vehicle returns false if add failed
 	bool addParcel(Parcel* parcel);
-
 	int performDeliveryDay(int* numberOfDeliveries);
-private:
 	int getType() const;
+private:
 };
 
 #endif /* PROFFESSIONALDELIVERYVEHICLE_H_ */

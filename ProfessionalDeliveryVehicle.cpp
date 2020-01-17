@@ -40,8 +40,3 @@ int ProfessionalDeliveryVehicle::performDeliveryDay(int* numberOfDeliveries)
 	return (DeliveryVehicle::calcProfit(total_distance, *numberOfDeliveries));
 }
 int ProfessionalDeliveryVehicle::getType() const { return professional; }
-
-
-
-
-

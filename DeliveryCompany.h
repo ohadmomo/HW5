@@ -20,7 +20,7 @@ public:
 	//Can't add vehicle, it already exists
 	//
 	//returns false if not possible and deletes vehicle
-	bool addVehicle(DeliveryVehicle* vehicle);
+	virtual bool addVehicle(DeliveryVehicle* vehicle);
 
 	//receives parcel if possible
 	//returns false if not possible and deletes parcel
