@@ -2,6 +2,8 @@
 #ifndef FASTDELIVERYCOMPANY_H_
 #define FASTDELIVERYCOMPANY_H_
 #include"DeliveryCompany.h"
+
+
 class FastDeliveryCompany:public DeliveryCompany {
 public:
 	//c'tor

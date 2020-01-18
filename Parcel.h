@@ -1,5 +1,6 @@
 #ifndef PARCEL_H_
 #define PARCEL_H_
+#include <stdlib.h>
 
 class Parcel {
 public:

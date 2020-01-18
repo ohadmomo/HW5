@@ -2,7 +2,6 @@
 #include "DeliveryVehicle.h"
 #include <string.h>
 #include <iostream>
-#define NUMBER_OF_PARCELS 5
 using namespace std;
 
 DeliveryVehicle::DeliveryVehicle(const char* ID, Quality quality)
@@ -40,6 +39,11 @@ bool DeliveryVehicle::addParcel(Parcel* parcel)
 	if (parcel == NULL)
 		return false;
 	int i;
+	for(i = 0; i< getNumOfParcels(); i++)
+	{
+		if (parcel == parcel_array_[i]) // if this parcel already exists
+			return false;
+	}
 	for (i = 0; i < NUMBER_OF_PARCELS; i++)
 	{
 		if (parcel_array_[i] == NULL)
@@ -56,30 +60,47 @@ int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries)
 	int total_distance;
 	DeliveryVehicle::performDeliveryDayInternal(numberOfDeliveries, &total_distance);
 	int profit = calcProfit(total_distance, *numberOfDeliveries);
-	cout << "Total revenue is " << profit << endl;
+	
+	if (this->getType() != professional)
+	{
+		if (*numberOfDeliveries == 0)
+			cout << "No parcels to deliver for vehicle " << this->getID() << endl;
+		else
+			cout << "Total revenue is " << profit << endl;
+	}
 	return profit;
 }
 
 void DeliveryVehicle::performDeliveryDayInternal(int* numberOfDeliveries, int* total_distance)
 {//what if NULL???
-	int max_station = 12;//DEFINEEEE
+	
 	int sum_distance = 0;
 	int num_of_deliveries = 0;
+	*total_distance = 0;
+	*numberOfDeliveries = 0;
 	int next_station, current_distance = 0;
 	int i;
+	if (getNumOfParcels() == 0)
+		{
+			//cout << "No parcels to deliver for vehicle " << this->getID() << endl;
+			return;
+		} 
 	cout << "Starting deliveries for vehicle " << ID_ << endl;
-	for (i = 0; i < NUMBER_OF_PARCELS; i++)
+	for (i = 0; i < getNumOfParcels(); i++)
 	{
 		next_station = parcel_array_[i]->getDest();
 		current_distance = DeliveryVehicle::Distance(current_station_, next_station);
-		if ((current_distance+sum_distance) <= max_station)
+		if ((current_distance + sum_distance) <= MAX_TRAVEL_DISTANCE)
 		{
 			num_of_deliveries++;
 			current_station_ = next_station;
 			sum_distance += current_distance;
 			cout << "Delivering parcel " << parcel_array_[i]->getID() << " to position " << parcel_array_[i]->getDest() << endl;
-			cout << "Fuel consumed: " << current_distance << "Revenue is: " << (DELIVERY_PROFIT) << endl;
-}
+			if (this->getType() == fast)
+				cout << "Fuel consumed: " << current_distance << " Revenue is: " << (2 * current_distance) << endl;
+			else
+				cout << "Fuel consumed: " << current_distance << " Revenue is: " << (DELIVERY_PROFIT) << endl;
+		}
 		else
 		{
 			DeliveryVehicle::updateParcelArray(parcel_array_, num_of_deliveries);
@@ -93,7 +114,7 @@ void DeliveryVehicle::performDeliveryDayInternal(int* numberOfDeliveries, int* t
 	DeliveryVehicle::updateParcelArray(parcel_array_, num_of_deliveries);
 	*numberOfDeliveries = num_of_deliveries;
 	*total_distance = sum_distance;
-	cout << "Total travel distance is " << total_distance << endl;
+	cout << "Total travel distance is " << *total_distance << endl;
 	return; 
 }
 
@@ -111,7 +132,8 @@ void DeliveryVehicle::updateParcelArray(Parcel** parcel_array, int num_of_delive
 	int i;
 	for (i = 0; i < num_of_deliveries; i++)
 	{
-		parcel_array[i]->~Parcel();
+		delete parcel_array[i];
+		parcel_array[i] = NULL;
 	}
 	for (i = num_of_deliveries; i < NUMBER_OF_PARCELS; i++)
 	{
@@ -128,3 +150,9 @@ int DeliveryVehicle::calcProfit(int sum_distance, int num_of_deliveries) const
 char* DeliveryVehicle::getID() { return ID_; }
 
 int DeliveryVehicle::getType() const { return all; }
+
+int DeliveryVehicle::getNumOfParcels() const{
+	int i = 0;
+	for (i = 0; i < NUMBER_OF_PARCELS; i++) 
+		if (parcel_array_[i] == NULL) return (i);
+}

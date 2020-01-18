@@ -2,6 +2,7 @@
 #define FASTDELIVERYVEHICLE_H_
 #include "DeliveryVehicle.h"
 
+
 class FastDeliveryVehicle : public DeliveryVehicle {
 public:
 

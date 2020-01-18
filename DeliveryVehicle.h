@@ -1,9 +1,12 @@
 #ifndef DELIVERYVEHICLE_H_
 #define DELIVERYVEHICLE_H_
+#define NUMBER_OF_PARCELS 5
+#define MAX_TRAVEL_DISTANCE 12
 #include "Parcel.h"
-#include "DeliveryVehicle.h"
-
+#include <iostream>
 #define  DELIVERY_PROFIT 4
+
+
 typedef enum quality { good = 3, ok = 4, bad = 5 } Quality;
 typedef enum type { all = 0, fast = 1, professional = 2 } Type;
 class DeliveryVehicle {
@@ -28,6 +31,7 @@ protected:
 	Parcel** parcel_array_;
 	int current_station_;
 	int calcProfit(int sum_distance, int num_of_deliveries) const;
+	int getNumOfParcels() const;
 	
 	
 };

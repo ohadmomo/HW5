@@ -3,6 +3,8 @@
 #define PROFESSIONALDELIVERYCOMPANY_H_
 #include"DeliveryCompany.h"
 
+
+
 class ProfessionalDeliveryCompany: public DeliveryCompany  {
 public:
 	//c'tor

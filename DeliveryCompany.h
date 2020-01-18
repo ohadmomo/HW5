@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include<iostream>
 
+
+
 class DeliveryCompany {
 public:
 	//c'tor
@@ -44,7 +46,7 @@ public:
 	//output example:
 	//Till now company has delivered 3 parcels
 	void displayNumberOfDeliveries();
-	virtual int getType();
+	
 protected:
 	DeliveryVehicleList* pdvl;
 	int budget;
@@ -52,6 +54,9 @@ protected:
 	bool CheckIfExist(DeliveryVehicle* vehicle, DeliveryVehicleList* pdvl) const;
 	int getIndex(DeliveryVehicle* vehicle) const;
 	int num_of_deliveries;
+	virtual int getType() const;
+
 };
+
 
 #endif /* DELIVERYCOMPANY_H_ */

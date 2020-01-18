@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<deque>
 #include "DeliveryVehicle.h"
+#include <string.h>
+
+
 using namespace std;
 
 class DeliveryVehicleList: public deque<DeliveryVehicle*> {
@@ -9,7 +12,7 @@ public:
 	DeliveryVehicleList();
 	~DeliveryVehicleList();
 
-	bool checkIfExists(DeliveryVehicle* vehicle);
+	//bool checkIfExists(DeliveryVehicle* vehicle);
 	DeliveryVehicle* getElement(int index) const;
 };
 

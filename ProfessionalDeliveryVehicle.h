@@ -2,6 +2,8 @@
 #define PROFESSIONALDELIVERYVEHICLE_H_
 #include "DeliveryVehicle.h"
 
+
+
 class ProfessionalDeliveryVehicle : public DeliveryVehicle {
 public:
 	//c'tor
